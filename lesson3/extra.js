@@ -43,13 +43,15 @@ function trimMyString(string) {
     alert("Your input is not a string!");
     return false;
   } else if(string.length > 50) {
-    return trim(string).substring(0, 51) + '...';
+    return string.trim().substring(0, 51) + '...';
   } else {
     return string.trim();
   }
   
 }
 
+let strss = trimMyString('    sdfdsfsd3edfregregrgrgrtgtrgtrgrgtrgtrgtrgtrgtrgtrgtrgrgtrkgntrgnrknvrtnvjrnvrorviornvinrv   ');
+console.log(strss);
 
 
 

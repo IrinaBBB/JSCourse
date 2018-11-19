@@ -1,43 +1,28 @@
 // сделать так, чтобы "урок" начинался с большой буквы
 
-let str = "урок-3-был слишком легким",
-    str1 = '';
+let str = "урок-3-был слишком легким";
+    str = str[0].toUpperCase()+ str.slice(1);
 
-for (let i = 0; i < str.length; i++) {
-  if (i == 0) {
-    str1 += str[i].toUpperCase();
-  } else {
-    str1 += str[i];
-  }
-}
-console.log(str1);
+console.log(str);
 
 // все “-” на пробелы
 
-let str2 = str1.replace(/-/g, " ");
-console.log(str2);
-
+str = str.replace(/-/g, " ");
+console.log(str);
 
 // строки вырезать слово “легким”, в этом же слове 
 //заменить 2 последние буквы на букву “о”
 
-let str3 = str2.replace("легким", "");
-console.log(str3);
+/* str = str.replace("легким", "");
+console.log(str); */
 
-let str4 = str2.substring(19);
-console.log(str4);
+str = str.slice(19);
+console.log(str);
 
-let str5 = '';
+str = str.slice(0,4);
+str += "оо";
 
-for (let i = 0; i < str4.length; i++) {
-  if (i == str4.length - 1 || i == str4.length - 2) {
-    str5 += "о";
-  } else {
-    str5 += str4[i];
-  }
- }
-
- console.log(str5);
+console.log(str);
 
 //  Вывести в консоль квадратный корень из суммы кубов элементов 
 
@@ -58,14 +43,11 @@ function trimMyString(string) {
     alert("Your input is not a string!");
     return false;
   } else if(string.length > 50) {
-    return trim(string.substring(0, 51) + '...');
+    return trim(string).substring(0, 51) + '...';
   } else {
     return string.trim();
   }
   
-
-
-
 }
 
 

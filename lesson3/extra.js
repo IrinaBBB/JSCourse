@@ -53,6 +53,21 @@ for(let i = 0; i < arr.length; i++) {
 
 console.log(sumCubes ** 0.5);
 
+function trimMyString(string) {
+  if (!isNaN(string)){
+    alert("Your input is not a string!");
+    return false;
+  } else if(string.length > 50) {
+    return trim(string.substring(0, 51) + '...');
+  } else {
+    return string.trim();
+  }
+  
+
+
+
+}
+
 
 
 

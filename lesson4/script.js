@@ -93,7 +93,7 @@ let appData = {
     document.body.innerHTML += 'Способы дополнительного заработка:<br>';
 
     appData.income.forEach(function(item, i) {
-      document.body.innerHTML += ((i + 1) +  '. ' + item + '<br>');
+      document.body.innerHTML += ((i + 1)+ ') ' + item + '<br>');
     }); 
 
   }

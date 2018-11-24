@@ -71,19 +71,23 @@ expensesBtn.addEventListener('click', function () {
 
 
 // необязательные расходы
-optionalExpensesBtn.addEventListener('click', function () {
-  let regPattern = /[А-Яа-яё]/;
 
+for (let i = 0; i < optionalExpensesItem.length; i++) {
+  optionalExpensesItem[i].addEventListener('input', function() {
+    optionalExpensesItem[i].value = optionalExpensesItem[i].value.replace(/[^А-Яа-яёЁ]/ig, '');
+  });
+}
+optionalExpensesBtn.addEventListener('click', function () {
   for (let i = 0; i < optionalExpensesItem.length; i++) {
+    if (optionalExpensesItem[i] != '') {
     let opt = optionalExpensesItem[i].value;
-    if (regPattern.test(opt)) {
       appData.optionalExpenses[i] = opt;
       optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
     } else {
-      alert('Используйте только русские буквы для ввода необязательных расходов');
-
+      alert('Заполните все три поля русскими буквами!');
     }
   }
+  
 });
 
 
@@ -135,93 +139,34 @@ checkSavings.addEventListener('click', function () {
   }
 });
 
-
 // Накопления и процент 
-sumValue.addEventListener('input', function () {
-  let regPattern = /[0-9]/;
+sumValue.addEventListener('input', function() {
+  sumValue.value  = sumValue.value.replace(/[^0-9]/ig, '');
   if (appData.savings == true) {
     let sum = +sumValue.value,
       percent = +percentValue.value;
-    if (regPattern.test(sum) && regPattern.test(percent)) {
       appData.monthIncome = sum / 100 / 12 * percent;
       appData.yearIncome = sum / 100 * percent;
-
-      monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
-      yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
-
-    } else {
-      alert('Используйте только цифры для ввода накоплений');
-    }
-
+     monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+  }
+});
+ // Накопления и процент
+percentValue.addEventListener('input', function() {
+  sumValue.value  = sumValue.value.replace(/[^0-9]/ig, '');
+  if (appData.savings == true) {
+    let sum = +sumValue.value,
+    percent = +percentValue.value;
+    appData.monthIncome = sum / 100 / 12 * percent;
+    appData.yearIncome = sum / 100 * percent;
+     monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+   
   }
 });
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Накопления и процент
-percentValue.addEventListener('input', function () {
-  let regPattern = /[0-9]/;
-  if (appData.savings == true) {
-    let sum = +sumValue.value,
-      percent = +percentValue.value;
-    if (regPattern.test(sum) && regPattern.test(percent)) {
-      appData.monthIncome = sum / 100 / 12 * percent;
-      appData.yearIncome = sum / 100 * percent;
-
-      monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
-      yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
-
-    } else {
-      alert('Используйте только цифры для ввода накоплений');
-    }
-
-  }
-
-});
 
 
 

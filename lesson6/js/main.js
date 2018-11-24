@@ -46,9 +46,9 @@ startBtn.addEventListener('click', function () {
 
 // обязательные расходы
 expensesBtn.addEventListener('click', function () {
-  if (!expensesItem[0].value  || !expensesItem[1].value || !expensesItem[2].value || !expensesItem[3].value) {
-      expensesBtn.disabled = true;
-      alert('Введите обязательные расходы.');
+  if (!expensesItem[0].value || !expensesItem[1].value || !expensesItem[2].value || !expensesItem[3].value) {
+    expensesBtn.disabled = true;
+    alert('Введите обязательные расходы.');
   }
 
   let sum = 0;
@@ -72,12 +72,18 @@ expensesBtn.addEventListener('click', function () {
 
 // необязательные расходы
 optionalExpensesBtn.addEventListener('click', function () {
+  let regPattern = /[А-Яа-яё]/;
+
   for (let i = 0; i < optionalExpensesItem.length; i++) {
     let opt = optionalExpensesItem[i].value;
-    appData.optionalExpenses[i] = opt;
-    optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
-  }
+    if (regPattern.test(opt)) {
+      appData.optionalExpenses[i] = opt;
+      optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
+    } else {
+      alert('Используйте только русские буквы для ввода необязательных расходов');
 
+    }
+  }
 });
 
 
@@ -94,7 +100,7 @@ countBtn.addEventListener('click', function () {
 
     appData.moneyPerDay = ((appData.budget - expensesSum) / 30).toFixed();
     dayBudgetValue.textContent = appData.moneyPerDay;
-  
+
     if (appData.moneyPerDay < 100) {
       levelValue.textContent = 'Минимальный уровень достатка';
     } else if (appData.moneyPerDay > 100 && appData.moneyPerDay) {
@@ -114,14 +120,14 @@ countBtn.addEventListener('click', function () {
 
 
 // Статьи возможного дохода
-incomeItem.addEventListener('input', function() {
-  
+incomeItem.addEventListener('input', function () {
+
   let items = incomeItem.value;
   appData.income = items.split(', ');
   incomeValue.textContent = appData.income;
 });
 
-checkSavings.addEventListener('click', function() {
+checkSavings.addEventListener('click', function () {
   if (appData.savings == true) {
     appData.savings = false;
   } else {
@@ -131,31 +137,90 @@ checkSavings.addEventListener('click', function() {
 
 
 // Накопления и процент 
-sumValue.addEventListener('input', function() {
+sumValue.addEventListener('input', function () {
+  let regPattern = /[0-9]/;
   if (appData.savings == true) {
     let sum = +sumValue.value,
       percent = +percentValue.value;
+    if (regPattern.test(sum) && regPattern.test(percent)) {
       appData.monthIncome = sum / 100 / 12 * percent;
       appData.yearIncome = sum / 100 * percent;
 
-    monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
-    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+      monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+      yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+
+    } else {
+      alert('Используйте только цифры для ввода накоплений');
+    }
+
   }
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Накопления и процент
-percentValue.addEventListener('input', function() {
+percentValue.addEventListener('input', function () {
+  let regPattern = /[0-9]/;
   if (appData.savings == true) {
     let sum = +sumValue.value,
-    percent = +percentValue.value;
-    appData.monthIncome = sum / 100 / 12 * percent;
-    appData.yearIncome = sum / 100 * percent;
+      percent = +percentValue.value;
+    if (regPattern.test(sum) && regPattern.test(percent)) {
+      appData.monthIncome = sum / 100 / 12 * percent;
+      appData.yearIncome = sum / 100 * percent;
 
-    monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
-    yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
-   
+      monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
+      yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
+
+    } else {
+      alert('Используйте только цифры для ввода накоплений');
+    }
+
   }
+
 });
 
 
@@ -168,6 +233,3 @@ let appData = {
   timeData: time,
   savings: false
 };
-
-
-

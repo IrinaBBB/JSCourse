@@ -54,7 +54,7 @@ expensesBtn.addEventListener('click', function () {
   let sum = 0;
   for (let i = 0; i < expensesItem.length; i++) {
     let expense = expensesItem[i].value,
-      cost = expensesItem[++i].value;
+        cost = expensesItem[++i].value;
 
     if (isNaN(expense) && !isNaN(cost) && expense != null && cost != null &&
       expense != '' && cost != '' && expense.length < 50) {
@@ -78,6 +78,10 @@ for (let i = 0; i < optionalExpensesItem.length; i++) {
   });
 }
 optionalExpensesBtn.addEventListener('click', function () {
+  if (!optionalExpensesItem[0].value || !optionalExpensesItem[1].value || !optionalExpensesItem[2].value) {
+    expensesBtn.disabled = true;
+    alert('Введите необязательные расходы.');
+  }
   for (let i = 0; i < optionalExpensesItem.length; i++) {
     if (optionalExpensesItem[i] != '') {
     let opt = optionalExpensesItem[i].value;

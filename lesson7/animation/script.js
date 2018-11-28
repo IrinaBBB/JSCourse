@@ -15,8 +15,12 @@ function moveRight(timestamp, el, dist, duration){
     }
 }
  
- requestAnimationFrame(function(timestamp){
-    starttime = timestamp || new Date().getTime(); 
-    moveRight(timestamp, box, 350, 2000); 
-}); 
+
+btn.addEventListener('click', function() {
+    requestAnimationFrame(function(timestamp){
+        starttime = timestamp || new Date().getTime(); 
+        moveRight(timestamp, box, 350, 2000); 
+    }); 
+});
+
 

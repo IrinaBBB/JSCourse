@@ -20,4 +20,11 @@ let myEl = new Options(30, 30, 'yellow', 30,'left');
 
 console.log(myEl.newDiv());
 
-document.newDiv().innerHTML = "Hello!";
+let myDiv = myEl.newDiv();
+
+document.body.appendChild(myDiv);
+myDiv.innerHTML = "hello";
+
+
+
+//document.newDiv().innerHTML = "Hello!";
